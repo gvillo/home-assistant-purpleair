@@ -57,8 +57,7 @@ enhance, and redistribute as you see fit.
 Adds HA 2025.1 support
 
 ### 2.0.4
-Adds Temperature in Celsius
-Adds spanish translations
+Adds Temperature in Celsius, adds spanish translations
 
 ### 2.0.3
 Added support for dual sensor devices that have a physical issue with one sensor. If a device has dual sensors and one of them is > 300 difference, it will set the confidence to "Severe" and instead of averaging the values, will use the lower value exclusively.
