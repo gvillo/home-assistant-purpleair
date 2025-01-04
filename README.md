@@ -19,17 +19,20 @@ To register a new purple air device:
 3. Give it a name.
 
 #### Current Sensors
-This will create 12 or 13 entities per device:
+This will create 12 (or more) entities per device:
 * Particulate Matter 0.1
 * Particulate Matter 2.5
 * Particulate Matter 10
 * Air Quality Index (EPA)
 * Air Quality Index (LRAPA)
 * Humidity (Adjusted sensor: +4%)
-* Temperature (Adjusted sensor: -8F)
-* Dewpoint (Adjusted sensor: re-calculated to take temp & humidity adjustments)
+* Temperature in Farenheit (Adjusted sensor: -8F)
+* Temperature in Celsius (Adjusted)
+* Dewpoint in Farenheit (Adjusted sensor: re-calculated to take temp & humidity adjustments)
+* Dewpoint in Celsius (Adjusted)
 * Pressure
 * RSSI
+* VOC
 * Particulate Matter 2.5 Aqi Raw value (sensor A)
 * Particulate Matter 2.5 Aqi Raw value (sensor B -- only for devices that have two)
 * PM 2.5 Confidence Level (Good, Questionable or Severe).
@@ -45,6 +48,13 @@ This component is licensed under the MIT license, so feel free to copy,
 enhance, and redistribute as you see fit.
 
 ## Releases
+
+### 2.0.5
+Adds HA 2025.1 support
+
+### 2.0.4
+Adds Temperature in Celsius
+Adds spanish translations
 
 ### 2.0.3
 Added support for dual sensor devices that have a physical issue with one sensor. If a device has dual sensors and one of them is > 300 difference, it will set the confidence to "Severe" and instead of averaging the values, will use the lower value exclusively.

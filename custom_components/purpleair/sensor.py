@@ -23,6 +23,7 @@ async def async_setup_entry(hass, config_entry, async_schedule_add_entities):
         if is_dual or entity_desc['key'] not in SENSORS_DUAL_ONLY:
             entities.append(PurpleAirQualitySensor(hass, index, config_entry, entity_desc))
 
+
     async_schedule_add_entities(entities)
 
 
@@ -34,7 +35,9 @@ class PurpleAirQualitySensor(SensorEntity):
         self._api = hass.data[DOMAIN]
         self._stop_listening = None
 
-        self._uom = entity_desc['uom']
+        self._uom = entity_desc['uom'] if 'uom' in entity_desc else None
+        self._device_class = entity_desc['device_class'] if 'device_class' in entity_desc else None
+        self._options = entity_desc['options'] if 'options' in entity_desc else None
         self._icon = entity_desc['icon']
         self._src_key = entity_desc['key']
 
@@ -64,6 +67,16 @@ class PurpleAirQualitySensor(SensorEntity):
         return self._uom
 
     @property
+    def device_class(self):
+        """Return device class."""
+        return self._device_class
+
+    @property
+    def options(self):
+        """Return options."""
+        return self._options
+
+    @property
     def icon(self):
         return self._icon
 
@@ -81,7 +94,7 @@ class PurpleAirQualitySensor(SensorEntity):
 
     @property
     def state_class(self):
-        return 'measurement'
+        return 'measurement' if self._uom is not None else None
 
     @property
     def unique_id(self):

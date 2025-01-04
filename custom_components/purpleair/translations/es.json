@@ -1,0 +1,23 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Este Purple Air station ID ya esta registrado."
+        },
+        "error": {
+            "cannot_connect": "Fallo al conectar, por favor intente de nuevo.",
+            "invalid_ip_address": "La dirección IP provista es invalida, inaccessible o no es un dispositivo PurpleAir",
+            "unknown": "Error desconocido."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "name": "Nombre del dispositivo",
+                    "ip_address": "Direcion IP de Purple Air"
+                },
+                "description": "Ingrese la dirección IP IP Address de su PurpleAir Station local",
+                "title": "Conectar a una PurpleAir Station"
+            }
+        }
+    },
+    "title": "PurpleAir"
+}
