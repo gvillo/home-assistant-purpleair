@@ -9,6 +9,10 @@ for each several readings.
 
 ### Installation
 
+#### HACS
+Just add this repo https://github.com/gvillo/home-assistant-purpleair to `Custom Repositories` and install it
+
+#### Manual
 Simply copy the `/purpleair` directory in to your config's
 `custom_components` directory (you may need to create it), restart Home
 Assistant, and add the integration via the UI (it's simple!).
