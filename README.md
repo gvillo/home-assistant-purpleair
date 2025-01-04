@@ -24,7 +24,7 @@ To register a new purple air device:
 
 #### Current Sensors
 This will create 12 (or more) entities per device:
-* Particulate Matter 0.1
+* Particulate Matter 1.0
 * Particulate Matter 2.5
 * Particulate Matter 10
 * Air Quality Index (EPA)
