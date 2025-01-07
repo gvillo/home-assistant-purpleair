@@ -50,13 +50,14 @@ def calc_dewpoint(temp_f, humidity):
     return dew_point_f
 
 
-def process_heat_adjustments(json_result, is_dual = False):
+def process_heat_adjustments(json_result):
     """Since the purple air devices are affected by heat from itself, modify readings to account for difference"""
     new_temp = json_result['current_temp_f'] + TEMP_ADJUSTMENT
     new_humid = min(100, json_result['current_humidity'] + HUMIDITY_ADJUSTMENT)
 
-    if is_dual:
+    if 'current_temp_f_680' in json_result:
         new_temp = round((new_temp + json_result['current_temp_f_680'] + TEMP_ADJUSTMENT) / 2)
+    if 'current_humidity_680' in json_result:
         new_humid = round((new_humid + min(100, json_result['current_humidity_680'] + HUMIDITY_ADJUSTMENT)) / 2)
 
     dewpoint = calc_dewpoint(new_temp, new_humid)
@@ -210,12 +211,12 @@ class PurpleAirApi:
                 'current_temp_raw': result['current_temp_f'],
                 'current_humidity_raw': result['current_humidity'],
                 'current_dewpoint_raw': result['current_dewpoint_f'],
-                'pressure': round((result['pressure'] + result['pressure_680']) / 2, 2) if is_dual else result['pressure'],
-                'voc': result['gas_680'] if result['gas_680'] else result['gas'] if result['gas'] else None,
+                'pressure': round((result['pressure'] + result['pressure_680']) / 2, 2) if 'pressure_680' in result else result['pressure'],
+                'voc': result['gas_680'] if 'gas_680' in result else result['gas'] if 'gas' in result else None,
                 'is_dual': is_dual
             }
             nodes[pa_sensor_id].update(process_pm_readings(result, is_dual))
-            nodes[pa_sensor_id].update(process_heat_adjustments(result, is_dual))
+            nodes[pa_sensor_id].update(process_heat_adjustments(result))
             _LOGGER.debug('Json results for %s: %s', pa_sensor_id, result)
             _LOGGER.debug('Readings for %s: %s', pa_sensor_id, nodes[pa_sensor_id])
 
