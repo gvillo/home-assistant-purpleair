@@ -50,24 +50,3 @@ sensors are marked above.
 
 This component is licensed under the MIT license, so feel free to copy,
 enhance, and redistribute as you see fit.
-
-## Releases
-
-### 2.0.5
-Adds HA 2025.1 support
-
-### 2.0.4
-Adds Temperature in Celsius, adds spanish translations
-
-### 2.0.3
-Added support for dual sensor devices that have a physical issue with one sensor. If a device has dual sensors and one of them is > 300 difference, it will set the confidence to "Severe" and instead of averaging the values, will use the lower value exclusively.
-
-### 2.0.1
-Replace public purple air device support (via purpleair.com) and replace
-with purpleair devices that are on your local network only. 
-
-### 1.1.0
-Adds support for private hidden sensors and indoor sensors. Fixes #3 and #4.
-
-### 1.0.0
-Initial release (after versioning)
